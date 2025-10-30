@@ -17,6 +17,7 @@ int main() {
     char archivo[50];           //Variable para almacenar el nombre del archivo para cargar matrices
     int escalar;
     int matricesCargadas = 0;   //Variable para comprobar que las matrices se han cargado correctamente antes de realizar cualquier operacion
+    int seleccionMatriz;
 
     do{
         system("cls");
