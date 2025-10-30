@@ -20,6 +20,7 @@ typedef enum {
 
 void visualizarMatriz(int matriz[N][N]);
 int cargarMatrices(const char* nombre, int m[N][N]);
+void guardarMatrices(const char* nombre, int m[N][N]);
 
 
 void visualizarMatriz(int matriz[N][N])
@@ -55,6 +56,28 @@ int cargarMatrices(const char* nombre, int m[N][N])
     return true;
 }
 
+
+void escribirMatriz(FILE* archivo, int m[N][N])
+{
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < N; j++)
+        {
+            fprintf(archivo, "%d", m[i][j]);
+        }
+        fprintf(archivo, "\n");
+    }
+}
+
+void guardarMatrices(const char* nombre, int m[N][N]) {
+    FILE* archivo = fopen(nombre, "w");
+    if (archivo == NULL) {
+        printf("Error al abrir el archivo");
+        return;
+    }
+    escribirMatriz(archivo, m);
+    fclose(archivo);
+}
 
 
 
