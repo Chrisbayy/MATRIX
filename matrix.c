@@ -25,7 +25,8 @@ int main() {
         printf("\t------------------------------------------------------\n");
         printf("\n\t1. Cargar Matrices\n");
         printf("\n\t2. Operaciones\n");
-        printf("\n\t3. Mostrar Matrices\n" COLOR_OFF);
+        printf("\n\t3. Mostrar Matrices\n");
+        printf("\n\t4. Guardar Resultado en Archivo\n");
         printf("\n\t4. Salir\n");
         printf("\n\tSeleccione una opcion: ");
         scanf("%d", &opcion);
@@ -34,23 +35,32 @@ int main() {
             case 1: 
                 printf("Ingrese el nombre del archivo para cargar la matriz A: ");
                 scanf("%s", archivo);
-                if(cargarMatrices(archivo, matrizA)) {
+                int cout = 0;
+                while(cout == 0){
+                    if(cargarMatrices(archivo, matrizA)) {
                     printf("Matriz A cargada correctamente \n");
                     matricesCargadas |= 1;  //Marcamos la matriz A como cargada
-                    //logOperacion
-                } else {
-                    printf("Error al cargar la matriz A.\n");
+                    logOperacion(CARGA_MATRIZ, matrizA, matrizB, matrizA, 0);
+                    cout = 1; 
+                    }   
+                    else
+                        printf("Error al cargar la matriz A.\n");
                 }
+
 
                 //Pasamos ahora a cargar la matriz B
                 printf("Ingrese el nombre del archivo para cargar la matriz B: ");
                 scanf("%s", archivo);
-                if(cargarMatrices(archivo, matrizB)) {
+                int cout = 0;
+                while(cout == 0){
+                    if(cargarMatrices(archivo, matrizB)) {
                     printf("Matriz A cargada correctamente \n");
                     matricesCargadas |= 2;  //Marcamos la matriz A como cargada
-                    //logOperacion
-                } else {
-                    printf("Error al cargar la matriz B.\n");
+                    logOperacion(CARGA_MATRIZ, matrizA, matrizB, matrizB, 0);
+                    cout = 1; 
+                    }
+                    else 
+                        printf("Error al cargar la matriz B.\n");   
                 }
                 break;
 
@@ -76,7 +86,7 @@ int main() {
                             printf("\n\t  =\n");
                             printf("\n\tResultado:\n");
                             visualizarMatriz(resultado);
-                            //logOperacion
+                            logOperacion(SUMA, matrizA, matrizB, resultado, 0);
 
                         } else {
                             printf("Ambas matrices deben estar cargadas para realizar la suma.\n");
@@ -94,7 +104,7 @@ int main() {
                             printf("\n\t  =\n");
                             printf("\n\tResultado:\n");
                             visualizarMatriz(resultado);
-                            //logOperacion
+                            logOperacion(RESTA, matrizA, matrizB, resultado, 0);
 
                         } else {
                             printf("Ambas matrices deben estar cargadas para realizar la resta.\n");
@@ -112,7 +122,7 @@ int main() {
                             printf("\n\t  =\n");
                             printf("\n\tResultado:\n");
                             visualizarMatriz(resultado);
-                            //logOperacion
+                            logOperacion(MULTIPLICACION, matrizA, matrizB, resultado, 0);
 
                         } else {
                             printf("Ambas matrices deben estar cargadas para realizar la multiplicación.\n");
@@ -132,7 +142,7 @@ int main() {
                             printf("\n\t  =\n");
                             printf("\n\tResultado:\n");
                             visualizarMatriz(resultado);
-                            //logOperacion
+                            logOperacion(PRODUCTO_ESCALAR, matrizA, matrizB, resultado, escalar);
                         }
                         else {
                             printf("La matriz A debe estar cargada para realizar el producto escalar.\n");
@@ -152,8 +162,20 @@ int main() {
                 }
 
                 break;
-            case 4: break; 
-                printf(COLOR_GREEN "Gracias por usar el programa.\n" COLOR_OFF);
+            
+            case 4: 
+                    if (matricesCargadas == 3) {
+                        printf("\nIngrese el nombre del archivo para guardar el resultado: ");
+                        scanf("%s", archivo);
+                        guardarMatriz(archivo, resultado);
+                        printf("Resultado guardado correctamente en %s\n", archivo);
+                    } else {
+                        printf("El resultado no se puede guardar sin realizar operaciones primero.\n");
+                    }
+                    break;
+
+            case 5:  
+                printf("Gracias por usar el programa.\n");
                 break;
 
             default: 
