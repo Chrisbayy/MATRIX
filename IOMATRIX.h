@@ -29,7 +29,7 @@ void visualizarMatriz(int matriz[N][N])
     {
         for (int j = 0; j < N; j++)
         {
-            printf("%d", matriz[i][j]);
+            printf("%d ", matriz[i][j]);
         }
         printf("\n");
     }
