@@ -245,7 +245,7 @@ int main() {
 
         printf("\n\tPresione Enter para continuar...");
         getchar(); // Captura la tecla enter para continuar
-        getchar(); // Captura el segundo enter para esperar entrada
 
     } while (opcion != 4);
+
 }
