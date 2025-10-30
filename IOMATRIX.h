@@ -63,7 +63,7 @@ void escribirMatriz(FILE* archivo, int m[N][N])
     {
         for (int j = 0; j < N; j++)
         {
-            fprintf(archivo, "%d", m[i][j]);
+            fprintf(archivo, "%d ", m[i][j]);
         }
         fprintf(archivo, "\n");
     }
