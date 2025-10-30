@@ -182,7 +182,7 @@ int main() {
                         break;
 
                     case 6: 
-                        printf("\n\tComprobar simetría de (1=Matriz A, 2=Matriz B): ");
+                        printf("\n\tComprobar simetria de (1=Matriz A, 2=Matriz B): ");
                         scanf("%d", &seleccionMatriz);
 
                         if (seleccionMatriz == 1 && (matricesCargadas & 1)) {
@@ -190,9 +190,9 @@ int main() {
                             printf("\n\tComprobando Matriz A:\n");
                             visualizarMatriz(matrizA);
                             if (verificarSimetria(matrizA)) {
-                                printf("\n\t>> Resultado: La Matriz A ES simétrica.\n");
+                                printf("\n\t>> Resultado: La Matriz A ES simetrica.\n");
                             } else {
-                                printf("\n\t>> Resultado: La Matriz A NO ES simétrica.\n");
+                                printf("\n\t>> Resultado: La Matriz A NO ES simetrica.\n");
                             }
                             logOperacion(SIMETRICA, matrizA, matrizB, resultado, 0); // Asumiendo SIMETRIA
                         
@@ -201,9 +201,9 @@ int main() {
                             printf("\n\tComprobando Matriz B:\n");
                             visualizarMatriz(matrizB);
                             if (verificarSimetria(matrizB)) {
-                                printf("\n\t>> Resultado: La Matriz B ES simétrica.\n");
+                                printf("\n\t>> Resultado: La Matriz B ES simetrica.\n");
                             } else {
-                                printf("\n\t>> Resultado: La Matriz B NO ES simétrica.\n");
+                                printf("\n\t>> Resultado: La Matriz B NO ES simetrica.\n");
                             }
                             logOperacion(SIMETRICA, matrizB, matrizA, resultado, 0);
 
@@ -252,7 +252,9 @@ int main() {
 
         printf("\n\tPresione Enter para continuar...");
         getchar(); // Captura la tecla enter para continuar
+        getchar(); 
+        
 
-    } while (opcion != 4);
+    } while (opcion != 5);
 
 }
