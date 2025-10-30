@@ -27,7 +27,7 @@ int main() {
         printf("\n\t2. Operaciones\n");
         printf("\n\t3. Mostrar Matrices\n");
         printf("\n\t4. Guardar Resultado en Archivo\n");
-        printf("\n\t4. Salir\n");
+        printf("\n\t5. Salir\n");
         printf("\n\tSeleccione una opcion: ");
         scanf("%d", &opcion);
 
@@ -70,6 +70,8 @@ int main() {
                 printf("\n\t2. Restar Matrices (A - B)\n");
                 printf("\n\t3. Multiplicar Matrices (A * B)\n");
                 printf("\n\t4. Producto Escalar (k * A)\n");
+                printf("\n\t5. Transponer Matriz (A^T)\n");
+                printf("\n\t6. Verificar Simetria de la Matriz A\n");
                 printf("\n\tSeleccione una operacion: ");
                 int operacion;
                 scanf("%d", &operacion);
@@ -147,7 +149,65 @@ int main() {
                         else {
                             printf("La matriz A debe estar cargada para realizar el producto escalar.\n");
                         }
-                        break;     
+                        break;  
+                    
+                    case 5: // Matriz Transpuesta
+                        printf("\n\tCalcular transpuesta de (1=Matriz A, 2=Matriz B): ");
+                        scanf("%d", &seleccionMatriz);
+
+                        if (seleccionMatriz == 1 && (matricesCargadas & 1)) {
+                            // Usuario eligió A y A está cargada
+                            transponerMatriz(matrizA, resultado);
+                            printf("\n\tTranspuesta de A (guardada en Resultado):\n");
+                            visualizarMatriz(resultado);
+                            logOperacion(TRASPUESTA, matrizA, matrizB, resultado, 0); // Asumiendo que TRASPUESTA es un tipo de log
+                        
+                        } else if (seleccionMatriz == 2 && (matricesCargadas & 2)) {
+                            // Usuario eligió B y B está cargada
+                            transponerMatriz(matrizB, resultado);
+                            printf("\n\tTranspuesta de B (guardada en Resultado):\n");
+                            visualizarMatriz(resultado);
+                            logOperacion(TRASPUESTA, matrizB, matrizA, resultado, 0); // O como gestiones el log
+                        
+                        } else {
+                            printf("Error: Opción no válida o la matriz seleccionada no está cargada.\n");
+                        }
+                        break;
+
+                    case 6: 
+                        printf("\n\tComprobar simetría de (1=Matriz A, 2=Matriz B): ");
+                        scanf("%d", &seleccionMatriz);
+
+                        if (seleccionMatriz == 1 && (matricesCargadas & 1)) {
+                            // Usuario eligió A y A está cargada
+                            printf("\n\tComprobando Matriz A:\n");
+                            visualizarMatriz(matrizA);
+                            if (verificarSimetria(matrizA)) {
+                                printf("\n\t>> Resultado: La Matriz A ES simétrica.\n");
+                            } else {
+                                printf("\n\t>> Resultado: La Matriz A NO ES simétrica.\n");
+                            }
+                            logOperacion(SIMETRICA, matrizA, matrizB, resultado, 0); // Asumiendo SIMETRIA
+                        
+                        } else if (seleccionMatriz == 2 && (matricesCargadas & 2)) {
+                            // Usuario eligió B y B está cargada
+                            printf("\n\tComprobando Matriz B:\n");
+                            visualizarMatriz(matrizB);
+                            if (verificarSimetria(matrizB)) {
+                                printf("\n\t>> Resultado: La Matriz B ES simétrica.\n");
+                            } else {
+                                printf("\n\t>> Resultado: La Matriz B NO ES simétrica.\n");
+                            }
+                            logOperacion(SIMETRICA, matrizB, matrizA, resultado, 0);
+
+                        } else {
+                            printf("Error: Opción no válida o la matriz seleccionada no está cargada.\n");
+                        }
+                        break;
+
+                    default:
+                        printf("Opcion no valida en operaciones.\n");
+                        break;
                 }
                 break; 
 
