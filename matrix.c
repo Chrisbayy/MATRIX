@@ -25,9 +25,8 @@ int main() {
         printf("\t------------------------------------------------------\n");
         printf("\n\t1. Cargar Matrices\n");
         printf("\n\t2. Operaciones\n");
-        // printf("\n\t3. Mostrar Matrices\n" COLOR_OFF);
-        // printf("\n\t4. Guardar Resultado en Archivo\n" COLOR_OFF);
-        printf("\n\t5. Salir\n");
+        printf("\n\t3. Mostrar Matrices\n" COLOR_OFF);
+        printf("\n\t4. Salir\n");
         printf("\n\tSeleccione una opcion: ");
         scanf("%d", &opcion);
 
@@ -61,8 +60,6 @@ int main() {
                 printf("\n\t2. Restar Matrices (A - B)\n");
                 printf("\n\t3. Multiplicar Matrices (A * B)\n");
                 printf("\n\t4. Producto Escalar (k * A)\n");
-                //printf("\n\t5. Transponer Matriz (A^T)\n");
-                //printf("\n\t6. Verificar Simetria de la Matriz A\n");
                 printf("\n\tSeleccione una operacion: ");
                 int operacion;
                 scanf("%d", &operacion);
@@ -71,8 +68,10 @@ int main() {
                     case 1: 
                         if(matricesCargadas == 3) {
                             sumar_matrices(matrizA, matrizB, resultado);
+                            printf("\n\tMatriz A:\n");
                             visualizarMatriz(matrizA);
                             printf("\n\t  +\n");
+                            printf("\tMatriz B:\n");
                             visualizarMatriz(matrizB);
                             printf("\n\t  =\n");
                             printf("\n\tResultado:\n");
@@ -87,8 +86,10 @@ int main() {
                     case 2: 
                         if(matricesCargadas == 3) {
                             restar_matrices(matrizA, matrizB, resultado);
+                            printf("\n\tMatriz A:\n");
                             visualizarMatriz(matrizA);
                             printf("\n\t  -\n");
+                            printf("\tMatriz B:\n");
                             visualizarMatriz(matrizB);
                             printf("\n\t  =\n");
                             printf("\n\tResultado:\n");
@@ -103,8 +104,10 @@ int main() {
                     case 3: 
                             if(matricesCargadas == 3) {
                             multiplicar_matrices(matrizA, matrizB, resultado);
+                            printf("\n\tMatriz A:\n");
                             visualizarMatriz(matrizA);
                             printf("\n\t  *\n");
+                            printf("\tMatriz B:\n");
                             visualizarMatriz(matrizB);
                             printf("\n\t  =\n");
                             printf("\n\tResultado:\n");
@@ -134,16 +137,24 @@ int main() {
                         else {
                             printf("La matriz A debe estar cargada para realizar el producto escalar.\n");
                         }
-                        break;
-                    case 5: break; 
-                    case 6: break;
-                        
+                        break;     
                 }
                 break; 
 
-            case 3: break; 
-            case 4: break;
-            case 5: break; 
+            case 3: 
+                if(matricesCargadas == 3){
+                    printf("\n\tMatriz A:\n");
+                    visualizarMatriz(matrizA);
+                    printf("\n\tMatriz B:\n");
+                    visualizarMatriz(matrizB);
+                } else {
+                    printf("Las matrices deben estar cargadas para mostrarlas.\n");
+                }
+
+                break;
+            case 4: break; 
+                printf(COLOR_GREEN "Gracias por usar el programa.\n" COLOR_OFF);
+                break;
 
             default: 
                 printf("Opcion no valida.\n");
@@ -154,5 +165,5 @@ int main() {
         getchar(); // Captura la tecla enter para continuar
         getchar(); // Captura el segundo enter para esperar entrada
 
-    } while (opcion != 5);
+    } while (opcion != 4);
 }
