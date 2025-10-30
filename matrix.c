@@ -27,42 +27,48 @@ int main() {
         printf("\n\t2. Operaciones\n");
         printf("\n\t3. Mostrar Matrices\n");
         printf("\n\t4. Guardar Resultado en Archivo\n");
-        printf("\n\t4. Salir\n");
+        printf("\n\t5. Salir\n");
         printf("\n\tSeleccione una opcion: ");
         scanf("%d", &opcion);
 
         switch (opcion){
-            case 1: 
+           case 1:
                 printf("Ingrese el nombre del archivo para cargar la matriz A: ");
                 scanf("%s", archivo);
-                int cout = 0;
-                while(cout == 0){
-                    if(cargarMatrices(archivo, matrizA)) {
-                    printf("Matriz A cargada correctamente \n");
-                    matricesCargadas |= 1;  //Marcamos la matriz A como cargada
-                    logOperacion(CARGA_MATRIZ, matrizA, matrizB, matrizA, 0);
-                    cout = 1; 
-                    }   
-                    else
-                        printf("Error al cargar la matriz A.\n");
+
+                int correcto = 0;
+                while (correcto == 0) {
+                    if (cargarMatrices(archivo, matrizA)) {
+                        printf("Matriz A cargada correctamente.\n");
+                        matricesCargadas |= 1;  // Marcamos la matriz A como cargada
+                        logOperacion(CARGA_MATRIZ, matrizA, matrizB, matrizA, 0);
+                        correcto = 1;
+                    } else {
+                        printf("Error al cargar la matriz A. Intente de nuevo.\n");
+                        printf("Ingrese el nombre del archivo para cargar la matriz A: ");
+                        scanf("%s", archivo);
+                    }
                 }
 
-
-                //Pasamos ahora a cargar la matriz B
+                // Ahora pasamos a cargar la matriz B
                 printf("Ingrese el nombre del archivo para cargar la matriz B: ");
                 scanf("%s", archivo);
-                int cout = 0;
-                while(cout == 0){
-                    if(cargarMatrices(archivo, matrizB)) {
-                    printf("Matriz A cargada correctamente \n");
-                    matricesCargadas |= 2;  //Marcamos la matriz A como cargada
-                    logOperacion(CARGA_MATRIZ, matrizA, matrizB, matrizB, 0);
-                    cout = 1; 
+
+                correcto = 0;
+                while (correcto == 0) {
+                    if (cargarMatrices(archivo, matrizB)) {
+                        printf("Matriz B cargada correctamente.\n");
+                        matricesCargadas |= 2;  // Marcamos la matriz B como cargada
+                        logOperacion(CARGA_MATRIZ, matrizA, matrizB, matrizB, 0);
+                        correcto = 1;
+                    } else {
+                        printf("Error al cargar la matriz B. Intente de nuevo.\n");
+                        printf("Ingrese el nombre del archivo para cargar la matriz B: ");
+                        scanf("%s", archivo);
                     }
-                    else 
-                        printf("Error al cargar la matriz B.\n");   
                 }
                 break;
+
 
             case 2: 
                 printf("\n\t-------- OPERACIONES --------\n");
@@ -167,7 +173,7 @@ int main() {
                     if (matricesCargadas == 3) {
                         printf("\nIngrese el nombre del archivo para guardar el resultado: ");
                         scanf("%s", archivo);
-                        guardarMatriz(archivo, resultado);
+                        guardarMatrices(archivo, resultado);
                         printf("Resultado guardado correctamente en %s\n", archivo);
                     } else {
                         printf("El resultado no se puede guardar sin realizar operaciones primero.\n");
