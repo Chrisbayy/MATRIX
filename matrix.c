@@ -1,5 +1,8 @@
 #include "IOMATRIX.h"
 #include "OPMATRIX.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #define N 5
 
@@ -12,10 +15,11 @@ int main() {
     int resultado[N][N] = {0};
 
     char archivo[50];           //Variable para almacenar el nombre del archivo para cargar matrices
+    int escalar;
     int matricesCargadas = 0;   //Variable para comprobar que las matrices se han cargado correctamente antes de realizar cualquier operacion
 
     do{
-        system("cls")
+        system("cls");
         printf("\n\n\t------------------------------------------------------\n");
         printf("\t\t MENU MATRIX\n");
         printf("\t------------------------------------------------------\n");
@@ -23,7 +27,7 @@ int main() {
         printf("\n\t2. Operaciones\n");
         // printf("\n\t3. Mostrar Matrices\n" COLOR_OFF);
         // printf("\n\t4. Guardar Resultado en Archivo\n" COLOR_OFF);
-        printf("\n\t5. Salir\n" COLOR_OFF);
+        printf("\n\t5. Salir\n");
         printf("\n\tSeleccione una opcion: ");
         scanf("%d", &opcion);
 
@@ -55,8 +59,8 @@ int main() {
                 printf("\n\t-------- OPERACIONES --------\n");
                 printf("\n\t1. Sumar Matrices (A + B)\n" );
                 printf("\n\t2. Restar Matrices (A - B)\n");
-                //printf("\n\t3. Multiplicar Matrices (A * B)\n");
-                //printf("\n\t4. Producto Escalar (k * A)\n");
+                printf("\n\t3. Multiplicar Matrices (A * B)\n");
+                printf("\n\t4. Producto Escalar (k * A)\n");
                 //printf("\n\t5. Transponer Matriz (A^T)\n");
                 //printf("\n\t6. Verificar Simetria de la Matriz A\n");
                 printf("\n\tSeleccione una operacion: ");
@@ -76,7 +80,7 @@ int main() {
                             //logOperacion
 
                         } else {
-                            printf("Ambas matrices deben estar cargadas para realizar la suma.\n")
+                            printf("Ambas matrices deben estar cargadas para realizar la suma.\n");
                         }
                         break; 
                     
@@ -92,9 +96,48 @@ int main() {
                             //logOperacion
 
                         } else {
-                            printf("Ambas matrices deben estar cargadas para realizar la suma.\n")
+                            printf("Ambas matrices deben estar cargadas para realizar la resta.\n");
                         }
                         break;
+                    
+                    case 3: 
+                            if(matricesCargadas == 3) {
+                            multiplicar_matrices(matrizA, matrizB, resultado);
+                            visualizarMatriz(matrizA);
+                            printf("\n\t  *\n");
+                            visualizarMatriz(matrizB);
+                            printf("\n\t  =\n");
+                            printf("\n\tResultado:\n");
+                            visualizarMatriz(resultado);
+                            //logOperacion
+
+                        } else {
+                            printf("Ambas matrices deben estar cargadas para realizar la multiplicación.\n");
+                        }
+                        break;
+                    
+                    case 4: 
+                        if(matricesCargadas & 1) {  //Solo necesitamos la matriz A cargada
+                            printf("Ingrese el valor escalar: ");
+                            printf("Ingrese el valor escalar: ");
+                            scanf("%d", &escalar);
+                            producto_escalar(matrizA, escalar, resultado);
+                            printf("\n\tProducto escalar %d * A:\n");
+                            visualizarMatriz(matrizA);
+                            printf("\n\t  *\n");
+                            printf("\t  %d\n", escalar);
+                            printf("\n\t  =\n");
+                            printf("\n\tResultado:\n");
+                            visualizarMatriz(resultado);
+                            //logOperacion
+                        }
+                        else {
+                            printf("La matriz A debe estar cargada para realizar el producto escalar.\n");
+                        }
+                        break;
+                    case 5: break; 
+                    case 6: break;
+                        
                 }
                 break; 
 
@@ -103,7 +146,7 @@ int main() {
             case 5: break; 
 
             default: 
-                printf(COLOR_RED "Opcion no valida.\n" COLOR_OFF);
+                printf("Opcion no valida.\n");
                 break;
         }
 
