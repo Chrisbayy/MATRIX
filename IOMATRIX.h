@@ -3,11 +3,7 @@
 
 #include <stdio.h>
 
-#ifndef __cplusplus  // evita conflicto con C++
-typedef int bool;
-#define true 1
-#define false 0
-#endif
+#include <stdbool.h>
 
 #define N 5
 
@@ -23,7 +19,7 @@ typedef enum {
 }Operacion;
 
 void visualizarMatriz(int matriz[N][N]);
-int cargarMatriz(const char* nombre, int m[N][N]);
+int cargarMatrices(const char* nombre, int m[N][N]);
 
 
 void visualizarMatriz(int matriz[N][N])
@@ -38,7 +34,7 @@ void visualizarMatriz(int matriz[N][N])
     }
 }
 
-int cargarMatriz(const char* nombre, int m[N][N])
+int cargarMatrices(const char* nombre, int m[N][N])
 {
     FILE* archivo = fopen(nombre, "r");
     if (archivo == NULL) 

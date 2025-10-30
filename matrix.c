@@ -1,6 +1,8 @@
 #include "IOMATRIX.h"
 #include "OPMATRIX.h"
-
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #define N 5
 
 int main() {
@@ -15,7 +17,7 @@ int main() {
     int matricesCargadas = 0;   //Variable para comprobar que las matrices se han cargado correctamente antes de realizar cualquier operacion
 
     do{
-        system("cls")
+        system("cls");
         printf("\n\n\t------------------------------------------------------\n");
         printf("\t\t MENU MATRIX\n");
         printf("\t------------------------------------------------------\n");
@@ -23,7 +25,7 @@ int main() {
         printf("\n\t2. Operaciones\n");
         // printf("\n\t3. Mostrar Matrices\n" COLOR_OFF);
         // printf("\n\t4. Guardar Resultado en Archivo\n" COLOR_OFF);
-        printf("\n\t5. Salir\n" COLOR_OFF);
+        printf("\n\t5. Salir\n");
         printf("\n\tSeleccione una opcion: ");
         scanf("%d", &opcion);
 
@@ -76,7 +78,7 @@ int main() {
                             //logOperacion
 
                         } else {
-                            printf("Ambas matrices deben estar cargadas para realizar la suma.\n")
+                            printf("Ambas matrices deben estar cargadas para realizar la suma.\n");
                         }
                         break; 
                     
@@ -92,7 +94,7 @@ int main() {
                             //logOperacion
 
                         } else {
-                            printf("Ambas matrices deben estar cargadas para realizar la suma.\n")
+                            printf("Ambas matrices deben estar cargadas para realizar la resta.\n");
                         }
                         break;
                 }
@@ -103,7 +105,7 @@ int main() {
             case 5: break; 
 
             default: 
-                printf(COLOR_RED "Opcion no valida.\n" COLOR_OFF);
+                printf("Opcion no valida.\n");
                 break;
         }
 
